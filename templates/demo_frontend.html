@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Maps-LLM Demo</title>
+</head>
+<body>
+  <h2>Demo: display iframe from API response</h2>
+  <form id="frm">
+    <input id="q" placeholder="Find good ramen in Jakarta" size="40"/>
+    <button type="submit">Search</button>
+  </form>
+  <div id="result"></div>
+  <script>
+    document.getElementById('frm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const q = document.getElementById('q').value;
+      const res = await fetch('/search', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({query: q, use_llm: true})
+      });
+      const data = await res.json();
+      if (res.ok) {
+        document.getElementById('result').innerHTML = `
+          <h3>${data.place.name}</h3>
+          <p>${data.place.address}</p>
+          ${data.map_iframe}
+          <p><a target="_blank" href="${data.maps_link}">Open in Google Maps</a></p>
+        `;
+      } else {
+        document.getElementById('result').textContent = JSON.stringify(data);
+      }
+    });
+  </script>
+</body>
+</html>
