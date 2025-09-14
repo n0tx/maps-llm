@@ -113,3 +113,5 @@ curl -sS -X POST "http://localhost:5000/search" \
 -H "Content-Type: application/json" \
 -d '{"query":"Find good ramen in Jakarta", "use_llm": true}' | jq .
 ```
+
+<img width="1436" height="524" alt="image" src="https://github.com/user-attachments/assets/250d6840-61af-40cf-b83d-bb7dad1d18b2" />
