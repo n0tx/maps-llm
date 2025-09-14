@@ -106,17 +106,10 @@ PORT=5000
 http://localhost:5000
 ```
 
-### Using Curl With LLM
+### Using Curl
 
 ```bash
 curl -sS -X POST "http://localhost:5000/search" \
 -H "Content-Type: application/json" \
--d '{"query":"Find good ramen in Jakarta, near the station", "use_llm": true}' | jq .
-```
-
-### Using Curl Without LLM
-```bash
-curl -sS -X POST "http://localhost:5000/search" \
--H "Content-Type: application/json" \
--d '{"query":"Find good ramen in Jakarta, near the station", "use_llm": false}' | jq .
+-d '{"query":"Find good ramen in Jakarta", "use_llm": true}' | jq .
 ```
